@@ -1,11 +1,25 @@
 /* eslint-disable @next/next/no-img-element */
+'use client'
+import { useState } from 'react'
 import { pattern_background_desktop, illustration, music } from '../../public/images'
 
 export default function Home() {
+    const [state, setState] = useState(true)
     return (
         <div className='w-full min-h-screen   flex  items-start justify-center bg-[#e0e8ff]  relative'>
             <img src={pattern_background_desktop.src} className='w-full' alt='' />
-            <div className='whitespace-nowrap absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 '>
+            <button
+                className='bg-blue-700 hover:bg-blue-400 duration-700 text-white px-3 py-2 rounded-md absolute top-10 right-10'
+                onClick={() => setState((prev) => !prev)}
+            >
+                order me
+            </button>
+
+            <div
+                className={`whitespace-nowrap duration-500 absolute  top-1/2 transform -translate-x-1/2 -translate-y-1/2 ${
+                    state ? 'visible opacity-100 left-1/2 ' : 'invisible opacity-0 left-1/3 '
+                }`}
+            >
                 <div className='w-full flex flex-col bg-white rounded-xl overflow-hidden gap-5 '>
                     <img src={illustration.src} alt='' />
 
@@ -20,7 +34,7 @@ export default function Home() {
 
                         <div className=' w-full flex gap-2 justify-between items-center bg-[#f5f7ff] p-5 md:p-9 rounded-xl'>
                             <div className='flex gap-5 items-center'>
-                                <div className='w-12     h-w-12  bg-[#e0e8ff] rounded-full'>
+                                <div className='w-12 h-w-12 bg-[#e0e8ff] rounded-full'>
                                     <img src={music.src} alt='' />
                                 </div>
                                 <div className='flex flex-col gap-1 text-sm font-medium  '>
